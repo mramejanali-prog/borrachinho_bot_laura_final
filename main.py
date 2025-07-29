@@ -1,11 +1,19 @@
-
-from telegram.ext import ApplicationBuilder, CommandHandler
 import os
+import logging
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
+# Ativa logging (podes remover depois)
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+
+# Token do Render (será substituído por variável de ambiente)
 TOKEN = os.getenv("BOT_TOKEN")
 
-async def start(update, context):
-    await update.message.reply_text("Olá! Borrachinho Bot está ativo.")
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Olá, eu sou o Borrachinho Bot da Laura. 🐻‍❄️✨")
 
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
